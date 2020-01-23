@@ -1,0 +1,19 @@
+RewriteEngine On
+
+Options -Indexes
+
+ErrorDocument 404 http://192.168.1.215:81/loadboard/404
+# return 404 for direct .php requests
+RewriteCond %{THE_REQUEST} \.php[/\s?] [NC]
+RewriteRule !^error - [R=404,L]
+
+# silent rewrite to add .php extension
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+<Files ~ "\.(jpg|jpeg|png|gif)$">
+   order deny,allow
+   allow from all
+</Files>
+RewriteCond %{REQUEST_URI} !\.jpg$ [NC]
+

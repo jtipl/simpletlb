@@ -1,0 +1,7 @@
+From_Address,From_City,From_State,To_Address,To_City,To_State,Pickup_date,Pickup_Time,Delivery_Date,Delivery_Time,Truckload_Type,Weight,Length,Equipment,Price
+101 Sanford Farm Shpg Cente,Amsterdam,New York,3053  Round Table Drive,West Chester,Ohio,5/31/2019,4.00 PM,06-01-2019,11.30 PM,FTL,1500,200,Flatbed,5000
+4206 N College Ave,Jackson,Alabama,4024  Pooh Bear Lane,Greenville,South Carolina,06-01-2019,3.00 AM,05-04-2019,4.00 PM,LTL,1750,150,Reefer,4500
+205 Cypress Lane ,Richmond Hill,New York,9755 Fieldstone Street ,Stuart,Florida,06-02-2019,10.00 AM,06-03-2019,3.00 AM,LTL,2150,300,Stepdeck,8000
+248 Ridgewood Street,Grand Island,Nebraska,26 White Street,Goshen,Indiana,06-02-2019,4.00 PM,06-04-2019,10.00 AM,FTL,4000,800,Power Only,6500
+8340 Manchester Lane ,Bayonne,New Jersey,500 Sunbeam Street ,Henderson,Kentucky,06-05-2019,5.00 AM,06-09-2019,12.00 PM,LTL,3150,500,Reefer,5000
+80 Town Line Rd,Rocky Hill,Connecticut,295 Plymouth Street,Halifax ,Massachusetts,06-03-2019,11.00 AM,06-05-2019,11.00 PM,FTL,2000,900,Van,4000

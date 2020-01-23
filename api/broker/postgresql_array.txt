@@ -1,0 +1,51 @@
+CREATE TABLE aa(ids integer[], signed_ids integer[]);
+INSERT INTO aa(ids, signed_ids) VALUES (ARRAY[1,2,3], ARRAY[2,1,4]);
+
+CREATE EXTENSION intarray;
+
+SELECT array_sort(ids) = array_sort(signed_ids) FROM aa
+
+
+SELECT array_compare_as_set(ids, signed_ids) FROM aa;
+
+CREATE OR REPLACE FUNCTION unnest(anyarray)
+  RETURNS SETOF anyelement AS
+$BODY$
+   SELECT $1[i] FROM generate_series(array_lower($1,1), array_upper($1,1)) i;
+$BODY$ LANGUAGE sql IMMUTABLE;
+
+CREATE OR REPLACE FUNCTION unnest2(anyarray) -- for 2-dimensional arrays
+  RETURNS SETOF anyelement AS
+$BODY$
+SELECT $1[i][j]
+FROM  (
+    SELECT i, generate_series(array_lower($1,2), array_upper($1,2)) j
+    FROM  (
+        SELECT generate_series(array_lower($1,1), array_upper($1,1)) i
+        ) x
+    ) y;
+$BODY$ LANGUAGE sql IMMUTABLE;
+
+DROP FUNCTION IF EXISTS array_sort(anyarray);
+CREATE FUNCTION
+  array_sort(
+    array_vals_to_sort anyarray
+  )
+  RETURNS TABLE (
+    sorted_array anyarray
+  )
+  AS $BODY$
+    BEGIN
+      RETURN QUERY SELECT
+        ARRAY_AGG(val) AS sorted_array
+      FROM
+        (
+          SELECT
+            UNNEST(array_vals_to_sort) AS val
+          ORDER BY
+            val
+        ) AS sorted_vals
+      ;
+    END;
+  $BODY$
+LANGUAGE plpgsql;
